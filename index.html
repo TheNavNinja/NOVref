@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="sv">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOVref – SWEREF zoner</title>
 
 <style>
-
 body{
 font-family: Arial, sans-serif;
 margin:40px;
@@ -44,7 +44,6 @@ color:white;
 tr:nth-child(even){
 background:#f2f2f2;
 }
-
 </style>
 
 </head>
@@ -53,7 +52,7 @@ background:#f2f2f2;
 
 <h2>NOVref – SWEREF zoner</h2>
 
-<input type="text" id="searchInput" placeholder="Sök kommun eller län..." onkeyup="searchTable()" />
+<input type="text" id="searchInput" placeholder="Sök kommun eller län..." onkeyup="searchTable()">
 
 <table id="dataTable">
 
@@ -72,40 +71,7 @@ background:#f2f2f2;
 <script>
 
 const data = [
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-<meta charset="UTF-8" />
-<title>Search NOVref</title>
-<style>
-  body { font-family: Arial, sans-serif; margin: 20px; }
-  input { padding: 8px; width: 300px; margin-bottom: 10px; }
-  table { border-collapse: collapse; width: 100%; }
-  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-  tr:nth-child(even) { background-color: #f9f9f9; }
-</style>
-</head>
-<body>
-
-<h2>NOVref</h2>
-<input type="text" id="searchInput" placeholder="Skriv kommun eller län här..." onkeyup="searchTable()" />
-
-<table id="dataTable">
-  <thead>
-    <tr>
-      <th>Kommun</th>
-      <th>Län</th>
-      <th>SWEREF-zon</th>
-    </tr>
-  </thead>
-  <tbody id="tableBody">
-    <!-- Tabellrader fylls här av JavaScript -->
-  </tbody>
-</table>
-
-<script>
-const data = [
-    {"kommun":"Ale","län":"Västra Götalands län","zon":"SWEREF 99 12 00"},
+  {"kommun":"Ale","län":"Västra Götalands län","zon":"SWEREF 99 12 00"},
   {"kommun":"Alingsås","län":"Västra Götalands län","zon":"SWEREF 99 12 00"},
   {"kommun":"Alvesta","län":"Kronobergs län","zon":"SWEREF 99 15 00"},
   {"kommun":"Aneby","län":"Jönköpings län","zon":"SWEREF 99 15 00"},
@@ -400,53 +366,9 @@ const data = [
   {"kommun":"Övertorneå","län":"Norrbottens län","zon":"SWEREF 99 23 15"}
 ];
 
-function populateTable() {
-  const tableBody = document.getElementById('tableBody');
-  tableBody.innerHTML = '';
-  data.forEach(item => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${item.kommun}</td>
-      <td>${item.län}</td>
-      <td>${item.zon}</td>
-    `;
-    tableBody.appendChild(row);
-  });
-}
-
-function searchTable() {
-  const input = document.getElementById('searchInput');
-  const filter = input.value.toLowerCase();
-  const table = document.getElementById('dataTable');
-  const tr = table.getElementsByTagName('tr');
-
-  for (let i = 1; i < tr.length; i++) {
-    const tdKommun = tr[i].getElementsByTagName('td')[0];
-    const tdLan = tr[i].getElementsByTagName('td')[1];
-    if (tdKommun && tdLan) {
-      const kommunText = tdKommun.textContent.toLowerCase();
-      const lanText = tdLan.textContent.toLowerCase();
-      if (kommunText.indexOf(filter) > -1 || lanText.indexOf(filter) > -1) {
-        tr[i].style.display = '';
-      } else {
-        tr[i].style.display = 'none';
-      }
-    }
-  }
-}
-
-window.onload = populateTable;
-</script>
-
-</body>
-</html>
-
-];
-
 function populateTable(){
 
 const tableBody=document.getElementById("tableBody");
-
 tableBody.innerHTML="";
 
 data.forEach(item=>{
