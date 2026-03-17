@@ -1,76 +1,77 @@
 <!DOCTYPE html>
 
 <html lang="sv">
+    
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOVATRON – SWEREF</title>
+    <br>
+     <img src="https://novatron.com/wp-content/uploads/2024/12/cropped-Novatron_logo_RGB_DarkGrey@4x.png" alt="BILD" width="330>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>NOVATRON – SWEREF</title>
 
-<style>
-body{
-font-family: Arial, sans-serif;
-margin:40px;
-background:#f4f4f4;
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #ffffff
+        }
 
-h2{
-margin-bottom:10px;
-}
+        h2 {
+            margin-bottom: 10px;
+        }
 
-input{
-padding:10px;
-width:320px;
-max-width:100%;
-margin-bottom:20px;
-font-size:16px;
-}
+        input {
+            padding: 10px;
+            width: 320px;
+            max-width: 100%;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
 
-table{
-border-collapse: collapse;
-width:100%;
-background:white;
-}
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+        }
 
-th,td{
-border:1px solid #ddd;
-padding:10px;
-}
+        th,
+        td {
+            border: 2px solid #555;
+            padding: 7px;
+        }
 
-th{
-background:#222;
-color:white;
-}
+        th {
+            background: #999;
+            color: black;
+        }
 
-tr:nth-child(even){
-background:#f2f2f2;
-}
-</style>
+        tr:nth-child(even) {
+            background: #dcdcdc
+        }
+    </style>
+<br>
+<br>
+<br>
+    <input type="text" id="searchInput" placeholder="Sök kommun eller län..." onkeyup="searchTable()">
 
-</head>
+    <table id="dataTable">
 
-<body>
+        <thead>
+            <tr>
+                <th>Kommun</th>
+                <th>Län</th>
+                <th>SWEREF</th>
+            </tr>
+        </thead>
 
-<h2>NOVATRON – SWEREF</h2>
+        <tbody id="tableBody"></tbody>
 
-<input type="text" id="searchInput" placeholder="Sök kommun eller län..." onkeyup="searchTable()">
+    </table>
 
-<table id="dataTable">
-
-<thead>
-<tr>
-<th>Kommun</th>
-<th>Län</th>
-<th>SWEREF</th>
-</tr>
-</thead>
-
-<tbody id="tableBody"></tbody>
-
-</table>
-
-<script>
-
-const data = [
+    <script>
+        const data = [{
   {"kommun":"Ale","län":"Västra Götalands län","zon":"SWEREF 99 <strong>12 00</strong>"},
   {"kommun":"Alingsås","län":"Västra Götalands län","zon":"SWEREF 99 <strong>12 00</strong>"},
   {"kommun":"Alvesta","län":"Kronobergs län","zon":"SWEREF 99 <strong>15 00</strong>"},
@@ -364,74 +365,74 @@ const data = [
   {"kommun":"Östra Göinge","län":"Skåne län","zon":"SWEREF 99 <strong>13 30</strong>"},
   {"kommun":"Överkalix","län":"Norrbottens län","zon":"SWEREF 99 <strong>23 15</strong>"},
   {"kommun":"Övertorneå","län":"Norrbottens län","zon":"SWEREF 99 <strong>23 15</strong>"}
-];
+        ];
 
-function populateTable(){
+        function populateTable() {
 
-const tableBody=document.getElementById("tableBody");
-tableBody.innerHTML="";
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
 
-data.forEach(item=>{
+            data.forEach(item => {
 
-const row=document.createElement("tr");
+                const row = document.createElement("tr");
 
-row.innerHTML=`
+                row.innerHTML = `
 <td>${item.kommun}</td>
 <td>${item.län}</td>
 <td>${item.zon}</td>
 `;
 
-tableBody.appendChild(row);
+                tableBody.appendChild(row);
 
-});
+            });
 
-}
+        }
 
-function searchTable(){
+        function searchTable() {
 
-const filter=document
-.getElementById("searchInput")
-.value
-.toLowerCase();
+            const filter = document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
 
-const rows=document
-.getElementById("dataTable")
-.getElementsByTagName("tr");
+            const rows = document
+                .getElementById("dataTable")
+                .getElementsByTagName("tr");
 
-for(let i=1;i<rows.length;i++){
+            for (let i = 1; i < rows.length; i++) {
 
-const kommun=rows[i]
-.getElementsByTagName("td")[0]
-.textContent
-.toLowerCase();
+                const kommun = rows[i]
+                    .getElementsByTagName("td")[0]
+                    .textContent
+                    .toLowerCase();
 
-const lan=rows[i]
-.getElementsByTagName("td")[1]
-.textContent
-.toLowerCase();
+                const lan = rows[i]
+                    .getElementsByTagName("td")[1]
+                    .textContent
+                    .toLowerCase();
 
-if(kommun.includes(filter)||lan.includes(filter))
-rows[i].style.display="";
-else
-rows[i].style.display="none";
+                if (kommun.includes(filter) || lan.includes(filter))
+                    rows[i].style.display = "";
+                else
+                    rows[i].style.display = "none";
 
-}
+            }
 
-}
+        }
 
-window.onload=populateTable;
-
-</script>
-<br>
-<br>
-<div style="text-align: center;">
+        window.onload = populateTable;
+    </script>
+    <br>
+    <br>
+   <div style="text-align: center;">
     <img src="https://www.lantmateriet.se/globalassets/geodata/gps-och-geodetisk-matning/projektionszoner-i-kommunerna.png"  alt="Bild" height="800">
-</div>    
-<br>
-<br>
-<br>
-<footer>
-<p>2026 Marcus Schill - NOVATRON</p>
-</footer>
+</div>
+    <br>
+    <footer>
+   <br>
+   <br>
+        <p>2026 Marcus Schill - NOVATRON</p>
+    </footer>
 </body>
+
 </html>
